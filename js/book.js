@@ -12,26 +12,44 @@ const searchBook = () => {
         .then(data => {
             displaySearchResult(data.docs)
             // console.log(data.docs);
-            console.log(data.docs.author_name[]);
+            console.log(data.docs.author_name);
         })
 }
 //=================Display Search Book Function=======
+// const displaySearchResult = docs => {
+//     const searchResult = document.getElementById('search-result');
+//     docs.forEach(book => {
+//         console.log(book);
+//         const div = document.createElement('div');
+//         div.classList.add('col');
+//         div.innerHTML = `<div class="card h-100">
+//         ${book.cover_i ?`<img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="${book.title}"> : <img src="https://www.pngkey.com/png/detail/350-3500680_placeholder-open-book-silhouette-vector.png" alt="" />`}
+
+//                 <div class="card-body">
+//                     <h5 class="card-title">${book.title}</h5>
+//                     <p>${book.author_name}</p>
+//                     <p class="card-text">${book.first_publish_year}</p>
+//                 </div>
+//       </div>`;
+//         searchResult.appendChild(div);
+//     });
+// }
+
 const displaySearchResult = docs => {
     const searchResult = document.getElementById('search-result');
     docs.forEach(book => {
-        console.log(book);
-        const div = document.createElement('div');
-        div.classList.add('col');
-        div.innerHTML = `<div class="card h-100">
-        <img src="https://covers.openlibrary.org/b/id/554106-M.jpg" class="card-img-top" alt="photo">
-        <div class="card-body">
-          <h5 class="card-title">title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p>${docs.author_name}</p>
-        </div>
-      </div>`;
+      // console.log(book);
+      const div = document.createElement('div');
+      div.classList.add('col');
+      div.innerHTML = `<div class="card h-100">
+          ${book.cover_i ? `<img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top " alt="${book.title}">` : `<img class="placeholder w-100" src="https://www.pngkey.com/png/detail/350-3500680_placeholder-open-book-silhouette-vector.png" alt="" />`}
+          <div class="card-body">
+            <h5 class="card-title">${book.title}</h5>
+           
+            <p>Author: ${book.author_name}</p>
+            <p class="card-text">First publish:${book.first_publish_year}</p>
+          </div>
+        </div>`;
       searchResult.appendChild(div);
     });
-}
-
-// ${docs.cover_i}https://covers.openlibrary.org/b/id/554106-M.jpg
+  }
